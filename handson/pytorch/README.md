@@ -15,22 +15,16 @@
 
 ## コンテンツ
 3つのコンテンツの間に5分ずつの休憩をはさみ、2時間のハンズオンを通して学習できるよう構成されています。なお、これらのコンテンツは SageMaker を動かすノートブックインスタンスは `ml.c5.xlarge` を推奨します (`ml.t2.medium` でも動きますが少し遅くなります)。
-1. SageMaker で Torchvision の転移学習 (30分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb "ADDITIONAL EXAMPLES > finetuning_torchvision_models_tutorial.ipynb")]
 1. SageMaker で PyTorch の分散学習 (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb "SAGEMAKER PYTHON SDK > pytorch_local_mode_cifar10.ipynb")]
 1. ベイズ最適化による Hyper Parameter Optimization (HPO) (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")]
+1. SageMaker で Torchvision の転移学習 (30分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb "ADDITIONAL EXAMPLES > finetuning_torchvision_models_tutorial.ipynb")]
 
 以下は必須ではありませんが追加のコンテンツです。
 - (optional) HPO ジョブの可視化 [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/analyze_results/HPO_Analyze_TuningJob_Results.ipynb "HYPERPARAMETER TUNING > HPO_Analyze_TuningJob_Result.ipynb")]
 - (optional) MNIST版の分散学習 [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_mnist/pytorch_mnist.ipynb "SAGEMAKER PYTHON SDK > pytorch_mnist.ipynb")]
 - (optional) コンテナ作成 [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/advanced_functionality/pytorch_extending_our_containers/pytorch_extending_our_containers.ipynb "ADVANCED FUNCTIONALITY > pytorch_extending_our_containers.ipynb")]
 
-### 1. [転移学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb "ADDITIONAL EXAMPLES > finetuning_torchvision_models_tutorial.ipynb")
-- Torchvision で学習済みの Squeezenet を読み込んで、アリとハチのデータセットを用いて2値分類のモデルを学習させます。
-    - `feature_extract` 変数により、 finetune / feature extract の2種類の方法を試すことができます。
-- 未学習のモデルを学習させて、上記の手順との学習速度・精度を比較します。
-- (optional) 他のモデルやサイズの違うモデル (Alexnet や Resnet34 など) を使って試します。
-
-### 2. [分散学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb "SAGEMAKER PYTHON SDK > pytorch_local_mode_cifar10.ipynb")
+### 1. [分散学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb "SAGEMAKER PYTHON SDK > pytorch_local_mode_cifar10.ipynb")
 - Cifar10 を使った学習スクリプト `source/cifar10.py` が用意されているので、これをエントリーポイントとした SageMaker の学習を行います。
     - デフォルトではローカルモードを用いて学習を行うようになっているので、ノートブックを書き換えて分散学習のジョブを発行します (実はスクリプト自体は元から対応しているので書き換えなくていい)。
     - ここでは `PyTorch 0.4.0` ビルド済みコンテナを呼び出しています。対応バージョンは[こちら](https://github.com/aws/sagemaker-python-sdk#pytorch-sagemaker-estimators)参照、なお 2018-12-02 時点の対応バージョンは `0.4.0`, `1.0.0.dev` ("Preview") です。
@@ -38,7 +32,7 @@
     - `hyperparameters={'epochs': 6}` でハイパーパラメータを渡すことができます。
 - (optional) 出力されたモデルを S3 から取得しノートブックインスタンス上の Jupyter Notebook で読み込んで推論を行ってみましょう。
 
-### 3. [ベイズ最適化 (HPO)](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")
+### 2. [ベイズ最適化 (HPO)](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")
 - SageMaker ではベイズ最適化を用いて、正規表現でパースされたメトリクスに対してハイパーパラメータの最適化 (HPO) を行うことができます。
 - (optional) HPO ジョブの結果を可視化しましょう [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/analyze_results/HPO_Analyze_TuningJob_Results.ipynb "HYPERPARAMETER TUNING > HPO_Analyze_TuningJob_Result.ipynb")]。
 - (optional) 新たなパラメータを最適化対象として追加してみましょう。
@@ -50,3 +44,9 @@
                                     parents={'<parent_tuning_job_name>','<parent_tuning_job_name_2>'})
     ```
     を実行し、 `warm_start_config=hpo_warm_start_config` を `HyperparameterTuner()` 作成時に追加。
+
+### 3. [転移学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb "ADDITIONAL EXAMPLES > finetuning_torchvision_models_tutorial.ipynb")
+- Torchvision で学習済みの Squeezenet を読み込んで、アリとハチのデータセットを用いて2値分類のモデルを学習させます。
+    - `feature_extract` 変数により、 finetune / feature extract の2種類の方法を試すことができます。
+- 未学習のモデルを学習させて、上記の手順との学習速度・精度を比較します。
+- (optional) 他のモデルやサイズの違うモデル (Alexnet や Resnet34 など) を使って試します。
