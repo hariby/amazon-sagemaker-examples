@@ -16,11 +16,11 @@
 ## コンテンツ
 3つのコンテンツの間に5分ずつの休憩をはさみ、2時間のハンズオンを通して学習できるよう構成されています。なお、これらのコンテンツは SageMaker を動かすノートブックインスタンスは `ml.c5.xlarge` を推奨します (`ml.t2.medium` でも動きますが少し遅くなります)。
 1. SageMaker で Torchvision の転移学習 (30分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb)]
-1. SageMaker で PyTorch の分散学習 (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_mnist/pytorch_mnist.ipynb)]
+1. SageMaker で PyTorch の分散学習 (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb)]
 1. ベイズ最適化による Hyper Parameter Optimization (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb)]
 
 以下は必須ではありませんが追加のコンテンツです。
-- (optional) Local mode スクリプトの書き換え [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb)]
+- (optional) MNIST版の分散学習 [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_mnist/pytorch_mnist.ipynb)]
 - (optional) コンテナ作成 [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/advanced_functionality/pytorch_extending_our_containers/pytorch_extending_our_containers.ipynb)]
 
 ### 1. [転移学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb)
@@ -29,13 +29,12 @@
 - 未学習のモデルを学習させて、上記の手順との学習速度・精度を比較します。
 - (optional) 他のモデルやサイズの違うモデル (Alexnet や Resnet34 など) を使って試します。
 
-### 2. [分散学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_mnist/pytorch_mnist.ipynb)
-- MNIST を使った学習スクリプト `mnist.py` が用意されているので、これをエントリーポイントとした SageMaker の学習を行います。
+### 2. [分散学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb)
+- Cifar10 を使った学習スクリプト `source/cifar10.py` が用意されているので、これをエントリーポイントとした SageMaker の学習を行います。
+    - デフォルトではローカルモードを用いて学習を行うようになっているので、ノートブックを書き換えて分散学習のジョブを発行します (実はスクリプト自体は元から対応しているので書き換えなくていい)。
     - ここでは `PyTorch 0.4.0` ビルド済みコンテナを呼び出しています。対応バージョンは[こちら](https://github.com/aws/sagemaker-python-sdk#pytorch-sagemaker-estimators)参照、なお 2018-12-02 時点の対応バージョンは `0.4.0`, `1.0.0.dev` ("Preview") です。
-    - デフォルト `train_instance_count=2, train_instance_type='ml.c4.xlarge'` では2台の `ml.c4.xlarge (4 vCPUs)` で分散学習が行われます。
     - 出力を見て複数ノードで学習が分散されていることを確認します。
-- (optional) インスタンスタイプ・インスタンス(ノード)数を変えて学習ジョブを走らせてみましょう。
-- (optional) 出力されたモデルを S3 から取得しノートブックインスタンス上の Jupyter Notebook で読み込ん推論を行ってみましょう。
+- (optional) 出力されたモデルを S3 から取得しノートブックインスタンス上の Jupyter Notebook で読み込んで推論を行ってみましょう。
 
 ### 3. [ベイズ最適化](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb)
 - ベイズ最適化を用いてハイパーパラメータの最適化を行うことができます。
