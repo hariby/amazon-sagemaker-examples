@@ -31,6 +31,7 @@
 
 ### 2. [分散学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_mnist/pytorch_mnist.ipynb)
 - MNIST を使った学習スクリプト `mnist.py` が用意されているので、これをエントリーポイントとした SageMaker の学習を行います。
+    - ここでは `PyTorch 0.4.0` ビルド済みコンテナを呼び出しています。対応バージョンは[こちら](https://github.com/aws/sagemaker-python-sdk#pytorch-sagemaker-estimators)参照、なお 2018-12-02 時点の対応バージョンは `0.4.0`, `1.0.0.dev` ("Preview") です。
     - デフォルト `train_instance_count=2, train_instance_type='ml.c4.xlarge'` では2台の `ml.c4.xlarge (4 vCPUs)` で分散学習が行われます。
     - 出力を見て複数ノードで学習が分散されていることを確認します。
 - (optional) インスタンスタイプ・インスタンス(ノード)数を変えて学習ジョブを走らせてみましょう。
@@ -38,4 +39,5 @@
 
 ### 3. [ベイズ最適化](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb)
 - ベイズ最適化を用いてハイパーパラメータの最適化を行うことができます。
+- (optional) Warm Start を使って最適化ジョブを継続するよう書き換えてみましょう [[参考](https://aws.amazon.com/jp/blogs/news/amazon-sagemaker-automatic-model-tuning-becomes-more-efficient-with-warm-start-of-hyperparameter-tuning-jobs/)]。
 - (optional) 新たなパラメータを最適化対象として追加してみましょう。
