@@ -43,6 +43,7 @@
     hpo_warm_start_config = WarmStartConfig(WarmStartTypes.IDENTICAL_DATA_AND_ALGORITHM,
                                     parents={'<parent_tuning_job_name>','<parent_tuning_job_name_2>'})
     ```
+    
     を実行し、 `warm_start_config=hpo_warm_start_config` を `HyperparameterTuner()` 作成時に追加。
 
 ### 3. [転移学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb "ADDITIONAL EXAMPLES > finetuning_torchvision_models_tutorial.ipynb")
