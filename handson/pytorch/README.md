@@ -38,11 +38,11 @@
 - (optional) 新たなパラメータを最適化対象として追加してみましょう。
     - `'momentum': ContinuousParameter(0.1, 0.5)` など。
 - (optional) Warm Start を使って最適化ジョブを継続するよう書き換えてみましょう [[参考ブログ](https://aws.amazon.com/jp/blogs/news/amazon-sagemaker-automatic-model-tuning-becomes-more-efficient-with-warm-start-of-hyperparameter-tuning-jobs/), [ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-warm-start.html)]。
-    - ```
-    from sagemaker.tuner import WarmStartConfig, WarmStartTypes
-    hpo_warm_start_config = WarmStartConfig(WarmStartTypes.IDENTICAL_DATA_AND_ALGORITHM,
+    - ```python
+      from sagemaker.tuner import WarmStartConfig, WarmStartTypes
+      hpo_warm_start_config = WarmStartConfig(WarmStartTypes.IDENTICAL_DATA_AND_ALGORITHM,
                                     parents={'<parent_tuning_job_name>','<parent_tuning_job_name_2>'})
-    ```
+      ```
     
     を実行し、 `warm_start_config=hpo_warm_start_config` を `HyperparameterTuner()` 作成時に追加。
 
