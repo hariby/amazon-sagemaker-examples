@@ -47,6 +47,6 @@
     - ```
     from sagemaker.tuner import WarmStartConfig, WarmStartTypes
     hpo_warm_start_config = WarmStartConfig(WarmStartTypes.IDENTICAL_DATA_AND_ALGORITHM,
-                                    parents={<parent_tuning_job_name>,<parent_tuning_job_name_2>})
+                                    parents={'<parent_tuning_job_name>','<parent_tuning_job_name_2>'})
     ```
     を実行し、 `warm_start_config=hpo_warm_start_config` を `HyperparameterTuner()` 作成時に追加。
