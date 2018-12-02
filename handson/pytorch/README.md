@@ -30,6 +30,11 @@
     - ここでは `PyTorch 0.4.0` ビルド済みコンテナを呼び出しています。対応バージョンは[こちら](https://github.com/aws/sagemaker-python-sdk#pytorch-sagemaker-estimators)参照、なお 2018-12-02 時点の対応バージョンは `0.4.0`, `1.0.0.dev` ("Preview") です。
     - 出力を見て複数ノードで学習が分散されていることを確認します。
     - `hyperparameters={'epochs': 6}` でハイパーパラメータを渡すことができます。
+- (optional) 70行目 `transforms.Compose()` の中に以下を書き足して Data augumentation するようにして精度を比較。
+    ```python
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip()
+    ```
 - (optional) 出力されたモデルを S3 から取得しノートブックインスタンス上の Jupyter Notebook で読み込んで推論を行ってみましょう。
 
 ### 2. [ベイズ最適化 (HPO)](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")
