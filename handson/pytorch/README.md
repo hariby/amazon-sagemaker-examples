@@ -29,7 +29,9 @@
     - デフォルトではローカルモードを用いて学習を行うようになっているので、ノートブックを書き換えて分散学習のジョブを発行します (実はスクリプト自体は元から対応しているので書き換えなくていい)。
     - ここでは `PyTorch 0.4.0` ビルド済みコンテナを呼び出しています。対応バージョンは[こちら](https://github.com/aws/sagemaker-python-sdk#pytorch-sagemaker-estimators)参照、なお 2018-12-02 時点の対応バージョンは `0.4.0`, `1.0.0.dev` ("Preview") です。
     - 出力を見て複数ノードで学習が分散されていることを確認します。
+- [SageMaker PyTorch Estimator](https://github.com/aws/sagemaker-python-sdk/blob/master/src/sagemaker/pytorch/README.rst) `sagemaker.pytorch.PyTorch` について: 
     - `hyperparameters={'epochs': 6}` でハイパーパラメータを渡すことができます。
+    - (optional) `metric_definitions` で CloudWatch メトリクスとして結果を出力することができます [[ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/training-metrics.html)]。
 - (optional) 学習スクリプト `source/cifar10.py` 68行目 `transforms.Compose([])` の中に以下の操作などを書き足して Data augumentation するようにして精度を比較 [[ドキュメント](https://pytorch.org/docs/stable/torchvision/transforms.html)]。
     ```python
     transforms.RandomCrop(32, padding=4),
