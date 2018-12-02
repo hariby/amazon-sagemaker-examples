@@ -14,7 +14,7 @@
 1. AWS の基礎的な知識と操作方法
 
 ## コンテンツ
-3つのコンテンツの間に5分ずつの休憩をはさみ、2時間のハンズオンを通して学習できるよう構成されています。なお、これらのコンテンツは SageMaker を動かすノートブックインスタンスは `ml.c5.xlarge` を推奨します (`ml.t2.medium` でも動きますが少し遅くなります)。
+3つのコンテンツの間に5分ずつの休憩をはさみ、2時間のハンズオンを通して学習できるよう構成されています。なお、これらのコンテンツを動かす SageMaker ノートブックインスタンスは `ml.c5.xlarge` を推奨します (`ml.t2.medium` でも動きますがローカルでの計算が少し遅くなります)。
 1. SageMaker で PyTorch の分散学習 (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb "SAGEMAKER PYTHON SDK > pytorch_local_mode_cifar10.ipynb")]
 1. ベイズ最適化による Hyper Parameter Optimization (HPO) (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")]
 1. SageMaker で Torchvision の転移学習 (30分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb "ADDITIONAL EXAMPLES > finetuning_torchvision_models_tutorial.ipynb")]
@@ -32,6 +32,11 @@
 - [SageMaker PyTorch Estimator](https://github.com/aws/sagemaker-python-sdk/blob/master/src/sagemaker/pytorch/README.rst) `sagemaker.pytorch.PyTorch` について: 
     - `hyperparameters={'epochs': 6}` でハイパーパラメータを渡すことができます。
     - (optional) `metric_definitions` で CloudWatch メトリクスとして結果を出力することができます [[ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/training-metrics.html)]。
+    ```python
+    metric_definitions=[
+        {'Name': 'train:loss', 'Regex': 'loss: ([0-9\.]+)'},
+    ]
+    ```
 - (optional) 学習スクリプト `source/cifar10.py` 68行目 `transforms.Compose([])` の中に以下の操作などを書き足して Data augumentation するようにして精度を比較 [[ドキュメント](https://pytorch.org/docs/stable/torchvision/transforms.html)]。
     ```python
     transforms.RandomCrop(32, padding=4),
