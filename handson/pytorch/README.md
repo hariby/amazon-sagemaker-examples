@@ -37,7 +37,7 @@
 - (optional) HPO ジョブの結果を可視化しましょう [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/analyze_results/HPO_Analyze_TuningJob_Results.ipynb "HYPERPARAMETER TUNING > HPO_Analyze_TuningJob_Result.ipynb")]。
 - (optional) 新たなパラメータを最適化対象として追加してみましょう。
     - `'momentum': ContinuousParameter(0.1, 0.5)` など。
-- (optional) Warm Start を使って最適化ジョブを継続するよう書き換えてみましょう [[参考ブログ](https://aws.amazon.com/jp/blogs/news/amazon-sagemaker-automatic-model-tuning-becomes-more-efficient-with-warm-start-of-hyperparameter-tuning-jobs/), [ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-warm-start.html)]。
+- (optional) Warm Start を使って最適化ジョブを継続するよう書き換えてみましょう [[ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-warm-start.html), [参考ブログ](https://aws.amazon.com/jp/blogs/news/amazon-sagemaker-automatic-model-tuning-becomes-more-efficient-with-warm-start-of-hyperparameter-tuning-jobs/)]。
     - ```python
       from sagemaker.tuner import WarmStartConfig, WarmStartTypes
       hpo_warm_start_config = WarmStartConfig(WarmStartTypes.IDENTICAL_DATA_AND_ALGORITHM,
