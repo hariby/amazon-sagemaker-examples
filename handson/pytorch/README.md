@@ -17,7 +17,7 @@
 3つのコンテンツの間に5分ずつの休憩をはさみ、2時間のハンズオンを通して学習できるよう構成されています。なお、これらのコンテンツは SageMaker を動かすノートブックインスタンスは `ml.c5.xlarge` を推奨します (`ml.t2.medium` でも動きますが少し遅くなります)。
 1. SageMaker で Torchvision の転移学習 (30分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb "ADDITIONAL EXAMPLES > finetuning_torchvision_models_tutorial.ipynb")]
 1. SageMaker で PyTorch の分散学習 (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb "SAGEMAKER PYTHON SDK > pytorch_local_mode_cifar10.ipynb")]
-1. ベイズ最適化による Hyper Parameter Optimization (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")]
+1. ベイズ最適化による Hyper Parameter Optimization (HPO) (40分) [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")]
 
 以下は必須ではありませんが追加のコンテンツです。
 - (optional) HPO ジョブの可視化 [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/analyze_results/HPO_Analyze_TuningJob_Results.ipynb "HYPERPARAMETER TUNING > HPO_Analyze_TuningJob_Result.ipynb")]
@@ -38,13 +38,15 @@
     - `hyperparameters={'epochs': 6}` でハイパーパラメータを渡すことができます。
 - (optional) 出力されたモデルを S3 から取得しノートブックインスタンス上の Jupyter Notebook で読み込んで推論を行ってみましょう。
 
-### 3. [ベイズ最適化](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")と[可視化](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/analyze_results/HPO_Analyze_TuningJob_Results.ipynb "HYPERPARAMETER TUNING > HPO_Analyze_TuningJob_Result.ipynb")
-- SageMaker ではベイズ最適化を用いて、正規表現でパースされたメトリクスに対してハイパーパラメータの最適化を行うことができます。
-- (optional) ジョブの結果を可視化しましょう [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/analyze_results/HPO_Analyze_TuningJob_Results.ipynb "HYPERPARAMETER TUNING > HPO_Analyze_TuningJob_Result.ipynb")]。
+### 3. [ベイズ最適化 (HPO)](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")
+- SageMaker ではベイズ最適化を用いて、正規表現でパースされたメトリクスに対してハイパーパラメータの最適化 (HPO) を行うことができます。
+- (optional) HPO ジョブの結果を可視化しましょう [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/analyze_results/HPO_Analyze_TuningJob_Results.ipynb "HYPERPARAMETER TUNING > HPO_Analyze_TuningJob_Result.ipynb")]。
+- (optional) 新たなパラメータを最適化対象として追加してみましょう。
+    - `'momentum': ContinuousParameter(0.1, 0.5)` など。
 - (optional) Warm Start を使って最適化ジョブを継続するよう書き換えてみましょう [[参考ブログ](https://aws.amazon.com/jp/blogs/news/amazon-sagemaker-automatic-model-tuning-becomes-more-efficient-with-warm-start-of-hyperparameter-tuning-jobs/), [ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-warm-start.html)]。
     - ```
+    from sagemaker.tuner import WarmStartConfig, WarmStartTypes
     hpo_warm_start_config = WarmStartConfig(WarmStartTypes.IDENTICAL_DATA_AND_ALGORITHM,
                                     parents={<parent_tuning_job_name>,<parent_tuning_job_name_2>})
     ```
-- (optional) 新たなパラメータを最適化対象として追加してみましょう。
-    - `'momentum': ContinuousParameter(0.1, 0.5)` など。
+    を実行し、 `warm_start_config=hpo_warm_start_config` を `HyperparameterTuner()` 作成時に追加。
