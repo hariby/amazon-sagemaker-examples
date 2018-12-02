@@ -23,13 +23,13 @@
 - (optional) MNIST版の分散学習 [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_mnist/pytorch_mnist.ipynb "SAGEMAKER PYTHON SDK > pytorch_mnist.ipynb")]
 - (optional) コンテナ作成 [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/advanced_functionality/pytorch_extending_our_containers/pytorch_extending_our_containers.ipynb "ADVANCED FUNCTIONALITY > pytorch_extending_our_containers.ipynb")]
 
-### 1. [転移学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb)
+### 1. [転移学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/handson/pytorch/finetuning_torchvision_models_tutorial.ipynb "ADDITIONAL EXAMPLES > finetuning_torchvision_models_tutorial.ipynb")
 - Torchvision で学習済みの Squeezenet を読み込んで、アリとハチのデータセットを用いて2値分類のモデルを学習させます。
     - `feature_extract` 変数により、 finetune / feature extract の2種類の方法を試すことができます。
 - 未学習のモデルを学習させて、上記の手順との学習速度・精度を比較します。
 - (optional) 他のモデルやサイズの違うモデル (Alexnet や Resnet34 など) を使って試します。
 
-### 2. [分散学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb)
+### 2. [分散学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb "SAGEMAKER PYTHON SDK > pytorch_local_mode_cifar10.ipynb")
 - Cifar10 を使った学習スクリプト `source/cifar10.py` が用意されているので、これをエントリーポイントとした SageMaker の学習を行います。
     - デフォルトではローカルモードを用いて学習を行うようになっているので、ノートブックを書き換えて分散学習のジョブを発行します (実はスクリプト自体は元から対応しているので書き換えなくていい)。
     - ここでは `PyTorch 0.4.0` ビルド済みコンテナを呼び出しています。対応バージョンは[こちら](https://github.com/aws/sagemaker-python-sdk#pytorch-sagemaker-estimators)参照、なお 2018-12-02 時点の対応バージョンは `0.4.0`, `1.0.0.dev` ("Preview") です。
@@ -37,7 +37,7 @@
     - `hyperparameters={'epochs': 6}` でハイパーパラメータを渡すことができます。
 - (optional) 出力されたモデルを S3 から取得しノートブックインスタンス上の Jupyter Notebook で読み込んで推論を行ってみましょう。
 
-### 3. [ベイズ最適化](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb)
+### 3. [ベイズ最適化](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/pytorch_mnist/hpo_pytorch_mnist.ipynb "HYPERPARAMETER TUNING > hpo_pytorch_mnist.ipynb")
 - SageMaker ではベイズ最適化を用いて、正規表現でパースされたメトリクスに対してハイパーパラメータの最適化を行うことができます。
 - ジョブの結果を可視化しましょう [[notebook](https://github.com/hariby/amazon-sagemaker-examples/blob/master/hyperparameter_tuning/analyze_results/HPO_Analyze_TuningJob_Results.ipynb "HYPERPARAMETER TUNING > HPO_Analyze_TuningJob_Result.ipynb")]。
 - (optional) Warm Start を使って最適化ジョブを継続するよう書き換えてみましょう [[参考ブログ](https://aws.amazon.com/jp/blogs/news/amazon-sagemaker-automatic-model-tuning-becomes-more-efficient-with-warm-start-of-hyperparameter-tuning-jobs/), [ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-warm-start.html)]。
