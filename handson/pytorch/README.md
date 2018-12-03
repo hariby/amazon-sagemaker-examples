@@ -37,7 +37,7 @@
         {'Name': 'train:loss', 'Regex': 'loss: ([0-9\.]+)'},
     ]
     ```
-- (optional) 学習スクリプト [`source/cifar10.py` 68行目 `transforms.Compose([])`](https://github.com/hariby/amazon-sagemaker-examples/blob/7769a65da7e4b6ce248dbf7e6cf9417653047ca3/sagemaker-python-sdk/pytorch_cnn_cifar10/source/cifar10.py#L68) の中に以下の操作などを書き足して Data augumentation するようにして精度を比較 [[ドキュメント](https://pytorch.org/docs/stable/torchvision/transforms.html)]。
+- (optional) 学習スクリプト [`source/cifar10.py` 68行目 `transforms.Compose([])`](https://github.com/hariby/amazon-sagemaker-examples/blob/7769a65da7e4b6ce248dbf7e6cf9417653047ca3/sagemaker-python-sdk/pytorch_cnn_cifar10/source/cifar10.py#L68) の中に以下の操作などを書き足して Data augmentation するようにして精度を比較 [[ドキュメント](https://pytorch.org/docs/stable/torchvision/transforms.html)]。
     ```python
     transforms.RandomCrop(32, padding=4),
     transforms.RandomHorizontalFlip()
