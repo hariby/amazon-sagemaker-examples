@@ -27,7 +27,7 @@
 ### 1. [分散学習](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/pytorch_local_mode_cifar10.ipynb "SAGEMAKER PYTHON SDK > pytorch_local_mode_cifar10.ipynb")
 - Cifar10 を使った学習スクリプト [`source/cifar10.py`](https://github.com/hariby/amazon-sagemaker-examples/blob/master/sagemaker-python-sdk/pytorch_cnn_cifar10/source/cifar10.py) が用意されているので、これをエントリーポイントとした SageMaker の学習を行います。
     - デフォルトではローカルモードを用いて学習を行うようになっているので、ノートブックを書き換えて分散学習のジョブを発行します (実は[スクリプト自体は元から対応](https://github.com/hariby/amazon-sagemaker-examples/blob/7769a65da7e4b6ce248dbf7e6cf9417653047ca3/sagemaker-python-sdk/pytorch_cnn_cifar10/source/cifar10.py#L50)しているので書き換えなくていい)。
-    - ここでは `PyTorch 0.4.0` ビルド済みコンテナを呼び出しています。対応バージョンは[こちら](https://github.com/aws/sagemaker-python-sdk#pytorch-sagemaker-estimators)参照、なお 2018-12-02 時点の対応バージョンは `0.4.0`, `1.0.0.dev` ("Preview") です。
+    - ここでは `PyTorch 0.4.0` ビルド済みコンテナを呼び出しています。対応バージョンは[こちら](https://github.com/aws/sagemaker-python-sdk#pytorch-sagemaker-estimators)参照、なお 2018-01-11 時点の対応バージョンは `0.4.0`, `1.0.0` です。
     - 出力を見て複数ノードで学習が分散されていることを確認します。
 - [SageMaker PyTorch Estimator](https://github.com/aws/sagemaker-python-sdk/blob/master/src/sagemaker/pytorch/README.rst) `sagemaker.pytorch.PyTorch` について: 
     - `hyperparameters={'epochs': 6}` でハイパーパラメータを渡すことができます。
