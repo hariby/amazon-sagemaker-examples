@@ -4,7 +4,7 @@ This repository contains example notebooks that show how to apply machine learni
 
 ## Examples
 ### 日本語コンテンツ
-いくつかの Examples を日本語に訳し、オリジナルコンテンツを追加しています。
+いくつかの Examples を日本語に訳し、オリジナルコンテンツを順次追加していきます。
 - [XGBoost による顧客のチャーン予測](https://github.com/hariby/amazon-sagemaker-examples/tree/master/introduction_to_applying_machine_learning/xgboost_customer_churn) (SageMaker Neo のサンプルもあります)
 - [SageMaker PyTorch ハンズオン](https://github.com/hariby/amazon-sagemaker-examples/tree/master/handson/pytorch)
 
