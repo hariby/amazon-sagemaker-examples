@@ -322,26 +322,29 @@ class DeepRacerDiscreteEnv(DeepRacerEnv):
         DeepRacerEnv.__init__(self)
 
         # actions -> straight, left, right
-        self.action_space = spaces.Discrete(5)
+        self.action_space = spaces.Discrete(6)
 
     def step(self, action):
 
         # Convert discrete to continuous
         if action == 0:  # move left
             steering_angle = 0.8
-            throttle = 0.3
+            throttle = 0.8
         elif action == 1:  # move right
             steering_angle = -0.8  # -1 #-0.5 #-1
-            throttle = 0.3
+            throttle = 0.8
         elif action == 2:  # straight
             steering_angle = 0
-            throttle = 0.3
-        elif action == 3:  # move left
+            throttle = 0.8
+        elif action == 3:  # slight left
             steering_angle = 0.4
-            throttle = 0.3
-        elif action == 4:  # move right
+            throttle = 0.8
+        elif action == 4:  # slight right
             steering_angle = -0.4  # -1 #-0.5 #-1
-            throttle = 0.3
+            throttle = 0.8
+        elif action == 5:  # slow
+            steering_angle = 0
+            throttle = 0.4
         else:  # should not be here
             raise ValueError("Invalid action")
 
