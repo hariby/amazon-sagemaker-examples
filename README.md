@@ -3,7 +3,9 @@
 This repository contains example notebooks that show how to apply machine learning and deep learning in [Amazon SageMaker](https://aws.amazon.com/sagemaker)
 
 ## Examples
-### 日本語コンテンツ
+
+### 日本語コンテンツ (順次こちらに移行予定です: [aws-samples/amazon-sagemaker-examples-jp](https://github.com/aws-samples/amazon-sagemaker-examples-jp))
+
 いくつかの Examples を日本語に訳し、オリジナルコンテンツを順次追加していきます。
 - [XGBoost による顧客のチャーン予測](https://github.com/hariby/amazon-sagemaker-examples/tree/master/introduction_to_applying_machine_learning/xgboost_customer_churn) (SageMaker Neo のサンプルもあります)
 - [SageMaker PyTorch ハンズオン](https://github.com/hariby/amazon-sagemaker-examples/tree/master/handson/pytorch)
